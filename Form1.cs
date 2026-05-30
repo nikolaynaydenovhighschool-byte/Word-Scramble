@@ -1,3 +1,5 @@
+using System.Media;
+
 namespace World_Scramble
 {
     public partial class Form1 : Form
@@ -5,6 +7,7 @@ namespace World_Scramble
         private List<string> words = new List<string>();
         private string currentWord = "";
         private string scrambleWord = "";
+
 
         private int successCount = 0;
         private int failedCount = 0;
@@ -98,6 +101,9 @@ namespace World_Scramble
 
             if (guesser.ToLower() == currentWord.ToLower())
             {
+                SoundPlayer player = new SoundPlayer("correct.wav");
+                player.Play();
+
                 MessageBox.Show("Правилно! Познахте думата.");
                 successCount++;
                 Success.Text = "Познати: " + successCount;
@@ -111,6 +117,9 @@ namespace World_Scramble
             }
             else
             {
+                SoundPlayer player = new SoundPlayer("wrong.wav");
+                player.Play();
+
                 MessageBox.Show("Грешно! Опитайте пак.");
                 failedCount++;
                 Failed.Text = "Сгрешени: " + failedCount;
@@ -124,6 +133,11 @@ namespace World_Scramble
 
         private void Skip_Click(object sender, EventArgs e)
         {
+            SoundPlayer player = new SoundPlayer("skip.wav");
+            player.Play();
+
+            MessageBox.Show("Пропуснахте думата! Вярната дума беше: " + currentWord);
+
             failedCount++;
             Failed.Text = "Сгрешени: " + failedCount;
             textBox1.Clear();
@@ -222,8 +236,10 @@ namespace World_Scramble
             {
                 
                 timer1.Stop();
+                SoundPlayer player = new SoundPlayer("wrong.wav");
+                player.Play();
 
-                MessageBox.Show("Времето изтече! Опитайте следващата дума.");
+                MessageBox.Show("Времето изтече! Вярната дума беше: " + currentWord);
 
                 failedCount++;
                 Failed.Text = "Сгрешени: " + failedCount;
@@ -235,4 +251,3 @@ namespace World_Scramble
         }
     }
 }
-
