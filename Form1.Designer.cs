@@ -67,10 +67,11 @@ namespace World_Scramble
             // button1
             // 
             button1.BackColor = SystemColors.ButtonFace;
+            button1.FlatAppearance.BorderSize = 0;
             button1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(698, 424);
+            button1.Location = new Point(721, 402);
             button1.Name = "button1";
-            button1.Size = new Size(139, 29);
+            button1.Size = new Size(100, 70);
             button1.TabIndex = 2;
             button1.Text = "Провери";
             button1.UseVisualStyleBackColor = false;
@@ -104,9 +105,9 @@ namespace World_Scramble
             // 
             Skip.BackColor = SystemColors.ButtonFace;
             Skip.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Skip.Location = new Point(930, 424);
+            Skip.Location = new Point(931, 402);
             Skip.Name = "Skip";
-            Skip.Size = new Size(139, 29);
+            Skip.Size = new Size(95, 70);
             Skip.TabIndex = 5;
             Skip.Text = "Пропусни";
             Skip.UseVisualStyleBackColor = false;
@@ -115,9 +116,9 @@ namespace World_Scramble
             // Hint
             // 
             Hint.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            Hint.Location = new Point(470, 426);
+            Hint.Location = new Point(552, 402);
             Hint.Name = "Hint";
-            Hint.Size = new Size(94, 29);
+            Hint.Size = new Size(70, 70);
             Hint.TabIndex = 6;
             Hint.Text = "Жокер";
             Hint.UseVisualStyleBackColor = true;
@@ -126,9 +127,9 @@ namespace World_Scramble
             // Restart
             // 
             Restart.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            Restart.Location = new Point(698, 507);
+            Restart.Location = new Point(708, 512);
             Restart.Name = "Restart";
-            Restart.Size = new Size(139, 45);
+            Restart.Size = new Size(126, 70);
             Restart.TabIndex = 7;
             Restart.Text = "Рестартирай";
             Restart.UseVisualStyleBackColor = true;
@@ -189,4 +190,3 @@ namespace World_Scramble
         private Label Timer;
     }
 }
-
