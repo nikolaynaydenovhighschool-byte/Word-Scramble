@@ -1,4 +1,4 @@
-﻿namespace World_Scramble
+namespace World_Scramble
 {
     partial class Form1
     {
@@ -28,16 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             textBox1 = new TextBox();
             button1 = new Button();
             Success = new Label();
             Failed = new Label();
+            Skip = new Button();
+            Hint = new Button();
+            Restart = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
+            Timer = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ButtonFace;
             label1.Location = new Point(708, 226);
@@ -49,21 +56,21 @@
             // 
             // textBox1
             // 
-            textBox1.BackColor = SystemColors.ControlDark;
+            textBox1.BackColor = SystemColors.Control;
             textBox1.Font = new Font("Trebuchet MS", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(698, 326);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 34);
+            textBox1.Size = new Size(139, 34);
             textBox1.TabIndex = 1;
             textBox1.TextChanged += textBox1_TextChanged_1;
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.ControlDark;
+            button1.BackColor = SystemColors.ButtonFace;
             button1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(708, 398);
+            button1.Location = new Point(698, 424);
             button1.Name = "button1";
-            button1.Size = new Size(115, 29);
+            button1.Size = new Size(139, 29);
             button1.TabIndex = 2;
             button1.Text = "Провери";
             button1.UseVisualStyleBackColor = false;
@@ -72,6 +79,7 @@
             // Success
             // 
             Success.AutoSize = true;
+            Success.BackColor = Color.Transparent;
             Success.Font = new Font("Tahoma", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             Success.ForeColor = SystemColors.ButtonFace;
             Success.Location = new Point(67, 69);
@@ -83,6 +91,7 @@
             // Failed
             // 
             Failed.AutoSize = true;
+            Failed.BackColor = Color.Transparent;
             Failed.Font = new Font("Tahoma", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             Failed.ForeColor = SystemColors.ButtonFace;
             Failed.Location = new Point(1237, 68);
@@ -91,12 +100,69 @@
             Failed.TabIndex = 4;
             Failed.Text = "Сгрешени: 0";
             // 
+            // Skip
+            // 
+            Skip.BackColor = SystemColors.ButtonFace;
+            Skip.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Skip.Location = new Point(930, 424);
+            Skip.Name = "Skip";
+            Skip.Size = new Size(139, 29);
+            Skip.TabIndex = 5;
+            Skip.Text = "Пропусни";
+            Skip.UseVisualStyleBackColor = false;
+            Skip.Click += Skip_Click;
+            // 
+            // Hint
+            // 
+            Hint.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            Hint.Location = new Point(470, 426);
+            Hint.Name = "Hint";
+            Hint.Size = new Size(94, 29);
+            Hint.TabIndex = 6;
+            Hint.Text = "Жокер";
+            Hint.UseVisualStyleBackColor = true;
+            Hint.Click += Hint_Click;
+            // 
+            // Restart
+            // 
+            Restart.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            Restart.Location = new Point(698, 507);
+            Restart.Name = "Restart";
+            Restart.Size = new Size(139, 45);
+            Restart.TabIndex = 7;
+            Restart.Text = "Рестартирай";
+            Restart.UseVisualStyleBackColor = true;
+            Restart.Click += Restart_Click;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            // 
+            // Timer
+            // 
+            Timer.AutoSize = true;
+            Timer.BackColor = Color.Transparent;
+            Timer.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            Timer.ForeColor = Color.White;
+            Timer.Location = new Point(724, 280);
+            Timer.Name = "Timer";
+            Timer.Size = new Size(85, 18);
+            Timer.TabIndex = 8;
+            Timer.Text = "Време: 60";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDarkDark;
+            BackColor = SystemColors.ButtonFace;
+            BackgroundImage = Properties.Resources.zigzag_cover;
             ClientSize = new Size(1444, 723);
+            Controls.Add(Timer);
+            Controls.Add(Restart);
+            Controls.Add(Hint);
+            Controls.Add(Skip);
             Controls.Add(Failed);
             Controls.Add(Success);
             Controls.Add(button1);
@@ -104,6 +170,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -115,5 +182,11 @@
         private Button button1;
         private Label Success;
         private Label Failed;
+        private Button Skip;
+        private Button Hint;
+        private Button Restart;
+        private System.Windows.Forms.Timer timer1;
+        private Label Timer;
     }
 }
+
