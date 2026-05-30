@@ -10,6 +10,9 @@ namespace World_Scramble
         private int failedCount = 0;
         private int totalWordCount = 0;
         private int failedAttempts = 0;
+        private int hintsLeft = 3;
+        private int timeLeft = 60;
+      
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +32,9 @@ namespace World_Scramble
                 if (words.Count > 0)
                 {
                     GetNextWord();
+                    timeLeft = 60;
+                    Timer.Text = "Време: " + timeLeft;
+                    timer1.Start();
                 }
                 else
                 {
@@ -71,6 +77,9 @@ namespace World_Scramble
             }
             label1.Text = scrambleWord;
             failedAttempts = 0;
+            timeLeft = 60;
+            Timer.Text = "Време: " + timeLeft;
+            timer1.Start();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -95,6 +104,10 @@ namespace World_Scramble
 
                 textBox1.Clear();
                 GetNextWord();
+
+                timeLeft = 60;
+                Timer.Text = "Време: " + timeLeft;
+                timer1.Start();
             }
             else
             {
@@ -108,5 +121,118 @@ namespace World_Scramble
         {
 
         }
+
+        private void Skip_Click(object sender, EventArgs e)
+        {
+            failedCount++;
+            Failed.Text = "Сгрешени: " + failedCount;
+            textBox1.Clear();
+            GetNextWord();
+        }
+
+        private void Hint_Click(object sender, EventArgs e)
+        {
+            if (hintsLeft <= 0)
+            {
+                MessageBox.Show("Нямате повече останали жокери!");
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(currentWord))
+            {
+                hintsLeft--;
+                char firstLetter = currentWord[0];
+                MessageBox.Show("Първата буква е: " + firstLetter + "\n Оставащи жокери: " + hintsLeft);
+
+                if (hintsLeft == 0)
+                {
+                    Hint.Enabled = false;
+                }
+            }
+        }
+
+        private void Restart_Click(object sender, EventArgs e)
+        {
+            successCount = 0;
+            failedCount = 0;
+            failedAttempts = 0;
+            hintsLeft = 3;
+
+            Success.Text = "Познати: " + successCount;
+            Failed.Text = "Сгрешени: " + failedCount;
+            textBox1.Clear();
+
+            Hint.Enabled = true;
+
+            if (File.Exists("words.txt"))
+            {
+                words.Clear();
+                string[] Lines = File.ReadAllLines("words.txt");
+
+                foreach (string lines in Lines)
+                {
+                    if (lines.Trim() != "")
+                    {
+                        words.Add(lines.Trim());
+                    }
+                }
+
+                if (words.Count > 0)
+                {
+                    GetNextWord();
+                    timeLeft = 60;
+                    Timer.Text = "Време: " + timeLeft;
+                    timer1.Start();
+
+                    MessageBox.Show("Играта беше рестартирана успешно!");
+                }
+                else
+                {
+                    MessageBox.Show("Файлът words.txt е празен!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файлът words.txt не беше намерен!");
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (timeLeft > 0)
+            {
+                
+                timeLeft--;
+
+                
+                Timer.Text = "Време: " + timeLeft;
+            }
+            else
+            {
+                
+                timer1.Stop();
+
+                MessageBox.Show("Времето изтече! Опитайте следващата дума.");
+
+                failedCount++;
+                Failed.Text = "Сгрешени: " + failedCount;
+
+                textBox1.Clear();
+                GetNextWord();
+
+            }
+        }
     }
 }
+
